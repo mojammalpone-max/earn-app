@@ -1,34 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sponsored Ad</title>
+  <title>Watch Ad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      background: #0088cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
+    .timer {
+      font-size: 18px;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-<body style="text-align:center;font-family:Arial">
 
-<h3>Sponsored Content</h3>
-<p>Please wait while the ad loads...</p>
+<body>
 
-  script>
-  atOptions = {
-    'key' : '10047f29be68e855786a28d864276a67',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/10047f29be68e855786a28d864276a67/invoke.js"></script>
+  <h2>📺 Watch Ad</h2>
 
-<br><br>
+  <div class="box">
+    <p>অনুগ্রহ করে নিচের বিজ্ঞাপনটি দেখুন</p>
 
-<button onclick="goBack()">✔️ Continue</button>
+    <!-- ✅ Adsterra Banner Ad START -->
+    <script>
+      atOptions = {
+        'key' : '10047f29be68e855786a28d864276a67',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/10047f29be68e855786a28d864276a67/invoke.js"></script>
+    <!-- ✅ Adsterra Banner Ad END -->
 
-<script>
-function goBack(){
-  window.location.href = "index.html#earned";
-}
-</script>
+    <div class="timer">
+      Please wait <span id="count">10</span> seconds
+    </div>
+
+    <button class="btn" id="continueBtn" disabled onclick="goBack()">
+      Continue
+    </button>
+  </div>
+
+  <script>
+    let time = 10;
+    let counter = document.getElementById("count");
+    let btn = document.getElementById("continueBtn");
+
+    let interval = setInterval(() => {
+      time--;
+      counter.innerText = time;
+
+      if (time <= 0) {
+        clearInterval(interval);
+        btn.disabled = false;
+        btn.innerText = "Continue & Earn";
+      }
+    }, 1000);
+
+    function goBack() {
+      // Earn trigger
+      window.location.href = "index.html#earned";
+    }
+  </script>
 
 </body>
 </html>
