@@ -1,4 +1,4 @@
-// ===== BASIC NAVIGATION =====
+// ===== NAVIGATION =====
 function show(id) {
   document.getElementById("home").style.display = "none";
   document.getElementById("task").style.display = "none";
@@ -8,39 +8,37 @@ function show(id) {
 }
 
 // ===== SETTINGS =====
-let earnPerAd = 1;        // প্রতি Ad = ৳1
-let dailyLimit = 101;    // Daily limit
-let minWithdraw = 1000;  // Minimum withdraw
-let maxWithdraw = 2500;  // Max per withdraw
+const earnPerAd = 1;        // প্রতি Ad = ৳1
+const dailyLimit = 101;    // Daily limit
+const minWithdraw = 1000;  // Minimum withdraw
+const maxWithdraw = 2500;  // Max per withdraw
 
 // ===== STORAGE =====
 let todayEarn = Number(localStorage.getItem("todayEarn")) || 0;
 let balance = Number(localStorage.getItem("balance")) || 0;
 
 // ===== INIT =====
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   updateWallet();
 
-  let btn = document.getElementById("earnBtn");
-  if (btn) {
-    btn.addEventListener("click", earn);
-  }
+  const btn = document.getElementById("earnBtn");
+  if (btn) btn.onclick = earn;
 });
 
-// ===== EARN (OPEN AD EXTERNALLY) =====
+// ===== EARN (SMARTLINK OPEN + REWARD) =====
 function earn() {
   if (todayEarn + earnPerAd > dailyLimit) {
     alert("আজকের ডেইলি লিমিট শেষ!");
     return;
   }
 
-  // 🔗 Adsterra Direct Link (Safe for Telegram)
-  let adLink =
-    "https://www.highperformanceformat.com/10047f29be68e855786a28d864276a67/";
+  // 🎯 আপনার Smartlink (Adsterra) URL
+  const adLink = "https://www.effectivegatecpm.com/quh0jxz32?key=cb9ff7d552cf0f98b6a20593c2d9b2c2";
 
+  // 🚀 নতুন ট্যাবে Ad open
   window.open(adLink, "_blank");
 
-  // ⏱️ Earn after short delay
+  // ⏱️ Delay দিয়ে Earn Add
   setTimeout(() => {
     todayEarn += earnPerAd;
     balance += earnPerAd;
@@ -49,8 +47,8 @@ function earn() {
     localStorage.setItem("balance", balance);
 
     updateWallet();
-    alert("✅ Ad viewed! ৳1 যোগ হয়েছে");
-  }, 3000);
+    alert("✅ Ad দেখানো হয়েছে! ৳1 যোগ হয়েছে");
+  }, 4000);  // 4 seconds delay
 }
 
 // ===== WITHDRAW =====
@@ -58,10 +56,10 @@ const BOT_TOKEN = "8562951849:AAFxWHbHtVrESTydp6MVejuEGECIDbyiZds";
 const ADMIN_ID = "7279123256";
 
 function withdraw() {
-  let today = new Date().getDay(); // Monday = 1
-  let method = document.getElementById("method").value;
+  const day = new Date().getDay(); // Monday = 1
+  const method = document.getElementById("method").value;
 
-  if (today !== 1) {
+  if (day !== 1) {
     alert("Withdraw শুধু সোমবার করা যাবে");
     return;
   }
@@ -71,20 +69,46 @@ function withdraw() {
     return;
   }
 
-  if (method === "") {
+  if (!method) {
     alert("Payment method select করুন");
     return;
   }
 
-  let amount = Math.min(balance, maxWithdraw);
+  const amount = Math.min(balance, maxWithdraw);
   sendWithdrawToAdmin(amount, method);
 
   alert(
-    "Withdraw request sent!\n" +
-      "Amount: ৳" + amount +
-      "\nMethod: " + method +
-      "\nAdmin approve করবে।"
+    "📤 Withdraw request sent!\n" +
+      "Amount: ৳" + amount + "\n" +
+      "Method: " + method + "\n" +
+      "Admin approve করবে!"
   );
 }
 
-// ===== SEND MESSAGE TO ADMIN
+function sendWithdrawToAdmin(amount, method) {
+  const text =
+    "📤 New Withdraw Request\n\n" +
+    "💰 Amount: ৳" + amount + "\n" +
+    "💳 Method: " + method + "\n" +
+    "📅 Day: Monday";
+
+  const url =
+    "https://api.telegram.org/bot" +
+    BOT_TOKEN +
+    "/sendMessage?chat_id=" +
+    ADMIN_ID +
+    "&text=" +
+    encodeURIComponent(text);
+
+  fetch(url);
+}
+
+// ===== WALLET UI =====
+function updateWallet() {
+  const w = document.getElementById("walletText");
+  if (w) {
+    w.innerHTML =
+      "Balance: ৳" + balance.toFixed(2) +
+      "<br>Today Earned: ৳" + todayEarn.toFixed(2);
+  }
+}
