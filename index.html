@@ -1,14 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Earn App</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #0088cc;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: #ffffff;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ddd;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-size: 16px;
+    }
+
+    .page {
+      display: none;
+      padding: 20px;
+      margin-bottom: 70px;
+    }
+
+    .box {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    button.main {
+      background: #0088cc;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>💰 Earn App</h2>
+<header>💰 Earn App</header>
 
+<!-- HOME -->
+<div id="home" class="page" style="display:block">
+  <div class="box">
+    <h3>Welcome</h3>
+    <p>Ads দেখে টাকা ইনকাম করুন</p>
+  </div>
+</div>
+
+<!-- TASK -->
+<div id="task" class="page">
+  <div class="box">
+    <h3>Task</h3>
+    <p>Ad দেখুন এবং ৳1 Earn করুন</p>
+    <button class="main" id="earnBtn">Watch Ad</button>
+  </div>
+</div>
+
+<!-- WALLET -->
+<div id="wallet" class="page">
+  <div class="box">
+    <h3>Wallet</h3>
+    <p id="walletText">Balance: ৳0</p>
+  </div>
+</div>
+
+<!-- WITHDRAW -->
+<div id="withdraw" class="page">
+  <div class="box">
+    <h3>Withdraw</h3>
+
+    <select id="method">
+      <option value="">Payment Method Select</option>
+      <option value="Bkash">Bkash</option>
+      <option value="Nagad">Nagad</option>
+    </select>
+
+    <br><br>
+
+    <button class="main" onclick="withdraw()">Withdraw Now</button>
+
+    <p style="font-size:14px;margin-top:10px;">
+      ℹ Withdraw শুধু সোমবার করা যাবে<br>
+      Min: ৳1000 | Max: ৳2500
+    </p>
+  </div>
+</div>
+
+<!-- NAV -->
 <nav>
   <button onclick="show('home')">🏠 Home</button>
   <button onclick="show('task')">📝 Task</button>
@@ -16,32 +128,7 @@
   <button onclick="show('withdraw')">💸 Withdraw</button>
 </nav>
 
-<hr>
-
-<div id="home">
-  <h3>Welcome</h3>
-  <p>Daily Earn Limit: ৳30</p>
-  <p>Minimum Withdraw: ৳300</p>
-</div>
-
-<div id="task" style="display:none">
-  <h3>Task</h3>
-  <p>Ad দেখুন এবং Earn করুন</p>
-  <button onclick="earn()">▶️ Watch Ad & Earn ৳0.70</button>
-</div>
-
-<div id="wallet" style="display:none">
-  <h3>Wallet</h3>
-  <p id="walletText">Balance: ৳0</p>
-</div>
-
-<div id="withdraw" style="display:none">
-  <h3>Withdraw</h3>
-  <p>Minimum Withdraw: ৳300</p>
-  <input type="text" placeholder="Bkash / Nagad Number"><br><br>
-  <button onclick="withdraw()">Request Withdraw</button>
-</div>
-
 <script src="script.js"></script>
+
 </body>
 </html>
