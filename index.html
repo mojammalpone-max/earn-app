@@ -7,20 +7,40 @@
 </head>
 <body>
 
-<h2>🏠 Home</h2>
-<p>Welcome to Earn App</p>
+<h2>💰 Earn App</h2>
 
 <nav>
-  <button onclick="show('home')">Home</button>
-  <button onclick="show('task')">Task</button>
-  <button onclick="show('wallet')">Wallet</button>
-  <button onclick="show('withdraw')">Withdraw</button>
+  <button onclick="show('home')">🏠 Home</button>
+  <button onclick="show('task')">📝 Task</button>
+  <button onclick="show('wallet')">💼 Wallet</button>
+  <button onclick="show('withdraw')">💸 Withdraw</button>
 </nav>
 
-<div id="home">Home Page</div>
-<div id="task" style="display:none">Task Page</div>
-<div id="wallet" style="display:none">Wallet Page</div>
-<div id="withdraw" style="display:none">Withdraw Page</div>
+<hr>
+
+<div id="home">
+  <h3>Welcome</h3>
+  <p>Daily Earn Limit: ৳30</p>
+  <p>Minimum Withdraw: ৳300</p>
+</div>
+
+<div id="task" style="display:none">
+  <h3>Task</h3>
+  <p>Ad দেখুন এবং Earn করুন</p>
+  <button onclick="earn()">▶️ Watch Ad & Earn ৳5</button>
+</div>
+
+<div id="wallet" style="display:none">
+  <h3>Wallet</h3>
+  <p id="walletText">Balance: ৳0</p>
+</div>
+
+<div id="withdraw" style="display:none">
+  <h3>Withdraw</h3>
+  <p>Minimum Withdraw: ৳300</p>
+  <input type="text" placeholder="Bkash / Nagad Number"><br><br>
+  <button onclick="withdraw()">Request Withdraw</button>
+</div>
 
 <script src="script.js"></script>
 </body>
