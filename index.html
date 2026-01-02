@@ -1,134 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Earn App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Mini Earn App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f2f5f9;
+}
+.header{
+    background:#ffffff;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#4caf50;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+.balance{
+    font-weight:bold;
+}
 
-    header {
-      background: #0088cc;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 20px;
-    }
+.card{
+    background:#fff;
+    margin:15px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+.circle{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#1877f2;
+    color:#fff;
+    font-size:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+}
+.stats{
+    display:flex;
+    justify-content:space-around;
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+}
+.btn{
+    margin-top:20px;
+    background:#1877f2;
+    color:#fff;
+    padding:14px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background: #ffffff;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      border-top: 1px solid #ddd;
-    }
+.menu{
+    background:#fff;
+    margin:15px;
+    border-radius:12px;
+}
+.menu-item{
+    padding:15px;
+    border-bottom:1px solid #eee;
+    display:flex;
+    justify-content:space-between;
+}
+.menu-item:last-child{
+    border-bottom:none;
+}
 
-    nav button {
-      background: none;
-      border: none;
-      font-size: 16px;
-    }
-
-    .page {
-      display: none;
-      padding: 20px;
-      margin-bottom: 70px;
-    }
-
-    .box {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    button.main {
-      background: #0088cc;
-      color: white;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      font-size: 16px;
-      border-radius: 6px;
-    }
-
-    select {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-    }
-  </style>
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#fff;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+    box-shadow:0 -2px 8px rgba(0,0,0,0.08);
+}
+.bottom-nav div{
+    font-size:12px;
+    color:#555;
+}
+</style>
 </head>
 
 <body>
 
-<header>💰 Earn App</header>
-
-<!-- HOME -->
-<div id="home" class="page" style="display:block">
-  <div class="box">
-    <h3>Welcome</h3>
-    <p>Ads দেখে টাকা ইনকাম করুন</p>
-  </div>
+<div class="header">
+    <div class="profile">
+        <div class="avatar">MH</div>
+        <div>
+            <div>Loading...</div>
+            <div class="balance">$0.00</div>
+        </div>
+    </div>
 </div>
 
-<!-- TASK -->
-<div id="task" class="page">
-  <div class="box">
-    <h3>Task</h3>
-    <p>Ad দেখুন এবং ৳1 Earn করুন</p>
-    <button class="main" id="earnBtn">Watch Ad</button>
-  </div>
+<div class="card">
+    <div class="circle">0</div>
+
+    <div class="stats">
+        <div>
+            <strong>0</strong><br>Total Earning
+        </div>
+        <div>
+            <strong>0</strong><br>Total Tasks
+        </div>
+        <div>
+            <strong>0</strong><br>Total Refer
+        </div>
+    </div>
+
+    <div class="btn">Start Earning</div>
 </div>
 
-<!-- WALLET -->
-<div id="wallet" class="page">
-  <div class="box">
-    <h3>Wallet</h3>
-    <p id="walletText">Balance: ৳0</p>
-  </div>
+<div class="menu">
+    <div class="menu-item">Telegram Channel <span>➜</span></div>
+    <div class="menu-item">How To Work <span>➜</span></div>
+    <div class="menu-item">Payment Profile <span>➜</span></div>
 </div>
 
-<!-- WITHDRAW -->
-<div id="withdraw" class="page">
-  <div class="box">
-    <h3>Withdraw</h3>
+<div style="height:70px;"></div>
 
-    <select id="method">
-      <option value="">Payment Method Select</option>
-      <option value="Bkash">Bkash</option>
-      <option value="Nagad">Nagad</option>
-    </select>
-
-    <br><br>
-
-    <button class="main" onclick="withdraw()">Withdraw Now</button>
-
-    <p style="font-size:14px;margin-top:10px;">
-      ℹ Withdraw শুধু সোমবার করা যাবে<br>
-      Min: ৳1000 | Max: ৳2500
-    </p>
-  </div>
+<div class="bottom-nav">
+    <div>Home</div>
+    <div>Earn</div>
+    <div>TG Tasks</div>
+    <div>Refer</div>
+    <div>Wallet</div>
+    <div>Profile</div>
 </div>
-
-<!-- NAV -->
-<nav>
-  <button onclick="show('home')">🏠 Home</button>
-  <button onclick="show('task')">📝 Task</button>
-  <button onclick="show('wallet')">💼 Wallet</button>
-  <button onclick="show('withdraw')">💸 Withdraw</button>
-</nav>
-
-<script src="script.js"></script>
 
 </body>
 </html>
